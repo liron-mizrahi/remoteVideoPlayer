@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List
 import threading
+import configparser
 
 
 # VLC imports
@@ -22,7 +23,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-VIDEO_FOLDER = "videos"
+# Load VIDEO_FOLDER from env.ini
+config = configparser.ConfigParser()
+config.read("env.ini")
+VIDEO_FOLDER = config.get("settings", "VIDEO_FOLDER", fallback="videos")
+
 
 class VideoControl(BaseModel):
     filename: str
