@@ -3,7 +3,7 @@ import axios from 'axios';
 export default function handler(req, res) {
   if (req.method === 'POST') {
     const { level } = req.body;
-    axios.post('http://localhost:8000/volume?level=' + level)
+    axios.post('http://127.0.0.1:8000/volume?level=' + level)
       .then(r => res.status(200).json(r.data))
       .catch(() => res.status(500).json({ status: 'error' }));
   } else {

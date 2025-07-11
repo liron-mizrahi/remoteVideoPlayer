@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 # Start frontend in background
 (
   cd frontend
-  npm install
+  #npm install
   npm run dev
 ) &
 
@@ -15,4 +15,4 @@ cd ./
 if [ -d .venv ]; then
   source .venv/bin/activate
 fi
-python main.py
+uv run main.py
