@@ -27,6 +27,7 @@ app.add_middleware(
 config = configparser.ConfigParser()
 config.read("env.ini")
 VIDEO_FOLDER = config.get("settings", "VIDEO_FOLDER", fallback="videos")
+VLC_PATH = config.get("settings", "VLC_PATH", fallback="/Applications/VLC.app/Contents/MacOS/VLC")
 
 
 class VideoControl(BaseModel):
@@ -77,7 +78,7 @@ class VideoPlayer:
         print(f"Playing: {abs_path}")
         # Launch VLC with RC interface
         self.process = subprocess.Popen([
-            "/Applications/VLC.app/Contents/MacOS/VLC",
+            VLC_PATH,
             "--fullscreen",
             "--no-video-title-show",
             "--extraintf=rc",
